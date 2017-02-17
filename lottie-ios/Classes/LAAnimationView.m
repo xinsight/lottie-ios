@@ -186,6 +186,9 @@ const NSTimeInterval singleFrameTimeValue = 1.0 / 60.0;
   
   NSError *error;
   NSString *filePath = [[NSBundle mainBundle] pathForResource:animationName ofType:@"json"];
+  if (filePath == nil) {
+    NSLog(@"Warning: Unable to find animation in bundle: %@", animationName);
+  }
   NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
   NSDictionary  *JSONObject = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData
                                                                          options:0 error:&error] : nil;
